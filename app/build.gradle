@@ -4,15 +4,20 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.yx.xhotfix"
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        //开启分包
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            multiDexKeepFile file('dex.keep')
+            def myFile = file('dex.keep')
+            println("isFileExists:"+myFile.exists())
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
